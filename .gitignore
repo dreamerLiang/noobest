@@ -1,0 +1,15 @@
+*.zip
+*.pyc
+*.DS_Store
+*.swp
+local_settings.py
+### Django ###
+*.pyc
+local_settings.py
+db.sqlite3
+*.so
+*.mo
+media/
+migrations/
+*.pid
+*~
