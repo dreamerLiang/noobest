@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^index', views.index),
     url(r'^about', views.about),
     url(r'^summoner', views.summoner),
+    url(r'^search', views.search),
 ]

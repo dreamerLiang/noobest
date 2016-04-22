@@ -45,7 +45,7 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand"><a href='../#'>Noobest</h3>
+              <h3 class="masthead-brand"><a href='../#'>Noobest</a></h3>
               
             </div>
           </div>
@@ -55,7 +55,19 @@
             <input id="game_id" class="input" name="game_id" type="text" maxlength="50"/>
           </div>
           <div class="btn-group">
-          <button id="Submit" class="btn button" type="button">Submit</button>
+          <input type="checkbox" name="complex_mode" value="complex" onclick="warning();"> Accurate Mode <br>
+          </div>
+          <script>
+          function warning() {
+            //alert("selecting Accurate Mode will be resulted in around 15 seconds of wait time");
+            document.getElementById("warning_msg").style.color = "white";
+          }
+          </script>
+          <div>
+          <p class="warning_msg" id="warning_msg"> Selecting this option will be resulted in around 15 seconds of wait time </p>
+          </div>
+          <div>
+          <a href="/search/" id="Submit" class="btn button" type="button">Submit</a>
           </div>
           <div class="mastfoot">
             <div class="inner">

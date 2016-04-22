@@ -10,6 +10,7 @@ def about(request):
 	return render(request, "about.html", locals())
 
 def summoner(request):
+	print "returning result"
 	if request.is_ajax():
 		#deal with the user input here.
 		# rank(user)
@@ -17,3 +18,5 @@ def summoner(request):
 		return render(request, "result.html", locals())
 	return render(request, "search.html", locals())
 
+def search(request):
+	return render(request, "result.html", locals())
