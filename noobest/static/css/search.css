@@ -9,30 +9,16 @@ a:hover {
   color: #fff;
 }
 
-
+/* Custom default button */
 .btn-default,
-.btn
- {
-  background-color: #4CAF50; /* Green */
-  text-shadow: : none;
-  border: none;
-  color: black;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  transition-duration: 0.8s;
-  font-size: 16px;
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
   text-shadow: none; /* Prevent inheritence from `body` */
-  background-color: green;
+  background-color: #fff;
   border: 1px solid #fff;
-
 }
 
-.btn-default:hover {
-    background-color: green; 
-    color: green;
-}
 
 /*
  * Base structure
@@ -77,6 +63,28 @@ body {
   padding: 30px;
 }
 
+.input {
+  color: black;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  margin-top: 100px;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.8s;
+  font-size: 16px;
+}
+
+.button:hover {
+    background-color: white; /* Green */
+    color: green;
+    font-size: 24px;
+}
 
 /*
  * Header
@@ -135,7 +143,6 @@ body {
   padding: 10px 20px;
   font-weight: bold;
 }
-
 
 /*
  * Footer

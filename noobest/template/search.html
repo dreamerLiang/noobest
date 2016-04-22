@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Nooooobest friend in League</title>
+    <title>Search</title>
 
     <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->
@@ -23,7 +23,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template -->
-    <link href="{% static "css/cover.css" %}" rel="stylesheet">
+    <link href="{% static "css/search.css" %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -45,23 +45,18 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand"><a href='#'>Noobest</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="about">About</a></li>
-                </ul>
-              </nav>
+              <h3 class="masthead-brand"><a href='../#'>Noobest</h3>
+              
             </div>
           </div>
-          <div class="inner cover">
-            <h1 class="cover-heading">Hey Noob. Is that you?</h1>
-            <p class="lead">Evaluate the performance of your League of Legend teammate within one step. Have you ever wonder who you should pay the most of the attention to? </p>
-            <p class="lead">
-              <a href="/summoner/" class="btn btn-lg btn-default">Click here to figure it out</a>
-            </p>
+          <div class="inner cover lead">
+            <h1 class="cover-heading">Search</h1>
+            <p class="lead">Please enter your League of Lengend Username:</p>
+            <input id="game_id" class="input" name="game_id" type="text" maxlength="50"/>
           </div>
-
+          <div class="btn-group">
+          <button id="Submit" class="btn button" type="button">Submit</button>
+          </div>
           <div class="mastfoot">
             <div class="inner">
               <p>Noobest Team</p>

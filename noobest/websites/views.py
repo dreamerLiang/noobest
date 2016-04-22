@@ -1,9 +1,12 @@
-from django.shortcuts import render
 from utils.api import watcher as w
+from django.shortcuts import render, HttpResponseRedirect
 
 
 def index(request):
-    return render(request, "index.html", locals())
+	return render(request, "index.html", locals())
+def about(request):
+	#return HttpResponseRedirect("about.html")
+	return render(request, "about.html", locals())
 
 def summoner(request):
     if request.is_ajax():
