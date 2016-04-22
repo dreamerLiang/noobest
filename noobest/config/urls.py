@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^', include('websites.urls')),
     url(r'^index', views.index),
     url(r'^about', views.about),
+    url(r'^summoner', views.summoner),
 ]
