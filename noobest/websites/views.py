@@ -9,7 +9,6 @@ def about(request):
 	return render(request, "about.html", locals())
 
 def summoner(request):
-<<<<<<< HEAD
 	print "returning result"
 	if request.is_ajax():
 		#deal with the user input here.
@@ -19,8 +18,6 @@ def summoner(request):
 	return render(request, "search.html", locals())
 
 def search(request):
-	return render(request, "result.html", locals())
-=======
     if request.is_ajax():
         #deal with the user input here.
         if not 'name' in request.POST:
@@ -53,4 +50,3 @@ def search(request):
             # redirect to result display page
             return render(request, "result.html", locals())
     return render(request, "search.html", locals())
->>>>>>> origin/master
