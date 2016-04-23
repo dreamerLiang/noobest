@@ -53,17 +53,20 @@
             </div>
           </div>
           
-          <div class="inner cover lead">
-            <h1 class="cover-heading">Search</h1>
-            <p class="lead">Please enter your League of Lengend Username:</p>
-            <input id="game_id" class="input" name="game_id" type="text" maxlength="50"/>
-          </div>
-          <div class="btn-group">
-            <input type="checkbox" id="complex_mode" value="complex"> Accurate Mode <br>
-          </div>
-          <div>
-          <a href="/search/" id="Submit" class="btn button" type="button">Submit</a>
-          </div>
+
+          <form method="POST" id="input_stuff">
+            <div class="inner cover lead">
+             <h1 class="cover-heading">Search</h1>
+             <p class="lead">Please enter your League of Lengend Username:</p>
+              <input id="game_id" class="input" name="game_id" type="text" maxlength="50"/>
+            </div>
+              <div class="btn-group">
+                <input type="checkbox" id="complex_mode" value="complex"> Accurate Mode <br>
+              </div>
+              <div>
+            <a id="Submit" class="btn button" type="button">Submit</a>
+            </div>
+          </form>
           <div class="mastfoot">
             <div class="inner">
               <p>Noobest Team</p>
@@ -73,15 +76,36 @@
       </div>
 
     </div>
+
+        <!--script src="{% static "js/jquery.js" %}"></script>
+        <script src="{% static "js/jquery.cookie.js" %}"></script>
+        <script src="{% static "bootstrap-3.3.6/js/bootstrap.min.js" %}"></script-->
     <script>
         $('#complex_mode').click(function() {
             $('#warning_msg').toggle(this.checked);
         });
-    </script>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    
+        $('#input_stuff').on('submit', function(event){
+            event.preventDefault();
+            console.log("form submitted!")  // sanity check
+            create_post();
+        });
+
+        function create_post() {
+          data['submit'] = 1;
+          data['game_id']= $('#game_id').val();
+          data['complex_mode'] = $('#complex_mode').val();
+          data['csrfmiddlewaretoken'] = csrf_token;
+          $.ajax({url: '/search/', type : "POST", data: data, success : successCall, error : responseFailure });
+        };
+
+        function successCall() {
+          console.log("create post is working!")
+        };
+
+        function responseFailure() {
+          console.log("Error! create not working!")
+        };
+    </script>    
   </body>
 </html>
