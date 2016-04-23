@@ -31,11 +31,21 @@ def search(request):
             return render(request, "search.html", locals())
 
         match = get_watcher().get_match_list(me['id'],'na')
-        match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:9]
-
+        match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:15]
+        match_details = []
+        all_players_id = dict()
 
         for match_id in match_id_list:
-            get_watcher().get_match(match_id)
+            match_detail = get_watcher().get_match(match_id)
+            match_details.append(match_detail)
+            for data in match_detail['participantIdentities']:
+                if data['player']['summonerId'] in all_players_id:
+                    all_players_id[data['player']['summonerId']] += 1
+                else:
+                    all_players_id[data['player']['summonerId']] = 1
+
+        sorted_all_players_id = sorted(all_players_id.items(), key=operator.itemgetter(1))
+        friends_id = [key for key, value in sorted_all_players_id if value > 1]
  
         return render(request, "result.html", locals())
 
