@@ -24,7 +24,6 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "css/search.css" %}" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -52,21 +51,18 @@
               
             </div>
           </div>
-          
 
-          <form method="POST" id="input_stuff">
             <div class="inner cover lead">
              <h1 class="cover-heading">Search</h1>
              <p class="lead">Please enter your League of Lengend Username:</p>
-              <input id="game_id" class="input" name="game_id" type="text" maxlength="50"/>
+              <input id="name" class="input" name="game_id" type="text" maxlength="50"/>
             </div>
               <div class="btn-group">
                 <input type="checkbox" id="complex_mode" value="complex"> Accurate Mode <br>
               </div>
               <div>
-            <a id="Submit" class="btn button" type="button">Submit</a>
+            <button id="submit" class="btn button" type="button">Submit</a>
             </div>
-          </form>
           <div class="mastfoot">
             <div class="inner">
               <p>Noobest Team</p>
@@ -77,35 +73,31 @@
 
     </div>
 
-        <!--script src="{% static "js/jquery.js" %}"></script>
-        <script src="{% static "js/jquery.cookie.js" %}"></script>
-        <script src="{% static "bootstrap-3.3.6/js/bootstrap.min.js" %}"></script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         $('#complex_mode').click(function() {
             $('#warning_msg').toggle(this.checked);
         });
-
-        $('#input_stuff').on('submit', function(event){
-            event.preventDefault();
-            console.log("form submitted!")  // sanity check
-            create_post();
+        $('#submit').click(function() {
+          data = {
+             'name': $('#name').val(),
+             'complex_mode': $('#complex_mode').val(),
+             'csrfmiddlewaretoken': "{{ csrf_token }}",
+          }
+          $.ajax({
+            url: "/search/",
+            type: "POST",
+            async: true,
+            data: data,
+            error: function(data) {
+              console.log(data);
+            },
+            success: function(data) {
+              
+            }
+          });
+          alert(/get success signal/);
         });
-
-        function create_post() {
-          data['submit'] = 1;
-          data['game_id']= $('#game_id').val();
-          data['complex_mode'] = $('#complex_mode').val();
-          data['csrfmiddlewaretoken'] = csrf_token;
-          $.ajax({url: '/search/', type : "POST", data: data, success : successCall, error : responseFailure });
-        };
-
-        function successCall() {
-          console.log("create post is working!")
-        };
-
-        function responseFailure() {
-          console.log("Error! create not working!")
-        };
-    </script>    
+    </script>
   </body>
 </html>
