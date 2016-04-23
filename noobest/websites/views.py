@@ -1,4 +1,5 @@
-from utils.api import watcher as w
+from utils.api import get_watcher
+from rank.views import rank
 from django.shortcuts import render, HttpResponseRedirect
 
 
@@ -24,28 +25,30 @@ def search(request):
             print 'hello'
         #get user name
         name = request.POST.get('name')
+        #w = get_watcher()
         # check if the name exist
         if not exists('name'):
             return render(request, "error.html", locals())
         else:
             # check if we have API calls remaining
-            print(w.can_make_request())
+            print(get_watcher().can_make_request())
 
-            me = w.get_summoner(name=name)
+            me = get_watcher().get_summoner(name=name)
             print(me)
 
-            match = w.get_match_list(me['id'],'na')
+            match = get_watcher().get_match_list(me['id'],'na')
             #print(match)
             match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:9]
             print(match_id_list)
-            for i in match_id_list:
-                w.get_match(i)
- 
-
-
-
-
+            match_result_list[9]
+            count = 0
+            for match_id in match_id_list:
+                match_result_list[count] = get_watcher().get_match(match_id)
+                count = count + 1
+            
             #rank(user)
+            rank(match_result_list)
+
             # redirect to result display page
             return render(request, "result.html", locals())
     return render(request, "search.html", locals())
