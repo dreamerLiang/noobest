@@ -42,9 +42,6 @@ def search(request):
                 w.get_match(i)
  
 
-
-
-
             #rank(user)
             # redirect to result display page
             return render(request, "result.html", locals())

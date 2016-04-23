@@ -24,6 +24,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "css/search.css" %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -42,29 +43,23 @@
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
-
+        <div class="alert alert-warning alert-dismissible" role="alert" id="warning_msg" style="display:none;">
+          <strong>Warning!</strong> Check Accurate Mode could result in 15 more seconds delay due to API limitations.
+        </div>
           <div class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand"><a href='../#'>Noobest</a></h3>
               
             </div>
           </div>
+          
           <div class="inner cover lead">
             <h1 class="cover-heading">Search</h1>
             <p class="lead">Please enter your League of Lengend Username:</p>
             <input id="game_id" class="input" name="game_id" type="text" maxlength="50"/>
           </div>
           <div class="btn-group">
-          <input type="checkbox" name="complex_mode" value="complex" onclick="warning();"> Accurate Mode <br>
-          </div>
-          <script>
-          function warning() {
-            //alert("selecting Accurate Mode will be resulted in around 15 seconds of wait time");
-            document.getElementById("warning_msg").style.color = "white";
-          }
-          </script>
-          <div>
-          <p class="warning_msg" id="warning_msg"> Selecting this option will be resulted in around 15 seconds of wait time </p>
+            <input type="checkbox" id="complex_mode" value="complex"> Accurate Mode <br>
           </div>
           <div>
           <a href="/search/" id="Submit" class="btn button" type="button">Submit</a>
@@ -74,16 +69,19 @@
               <p>Noobest Team</p>
             </div>
           </div>
-
         </div>
-
       </div>
 
     </div>
+    <script>
+        $('#complex_mode').click(function() {
+            $('#warning_msg').toggle(this.checked);
+        });
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
   </body>
 </html>
