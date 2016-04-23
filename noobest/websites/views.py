@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 from utils.api import get_watcher
 from rank.views import rank
+=======
+from utils.api import get_watcher 
+from utils.constants import ErrorList
+>>>>>>> 938ac173402f05901bc98f1cc021c13a03eef584
 from django.shortcuts import render, HttpResponseRedirect
 
 
@@ -19,14 +24,26 @@ def summoner(request):
 
 def search(request):
     if request.is_ajax():
-        #deal with the user input here.
         if not 'name' in request.POST:
-        #return false
-            print 'hello'
-        #get user name
+            return render(request, "search.html", locals())
+
         name = request.POST.get('name')
-        #w = get_watcher()
-        # check if the name exist
+
+        # try:
+        #     me = get_watcher().get_summoner(name=name)
+        # except:
+        #     error_code = ErrorList.USER_NOT_FOUND
+        #     return render(request, "search.html", locals())
+
+        # match = get_watcher().get_match_list(me['id'],'na')
+        # match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:9]
+
+
+        # for match_id in match_id_list:
+        #     get_watcher().get_match(match_id)
+ 
+        # return render(request, "result.html", locals())
+
         if not exists('name'):
             return render(request, "error.html", locals())
         else:
