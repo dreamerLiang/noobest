@@ -42,9 +42,6 @@
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
-        <div class="alert alert-warning alert-dismissible" role="alert" id="warning_msg" style="display:none;">
-          <strong>Warning!</strong> Check Accurate Mode could result in 15 more seconds delay due to API limitations.
-        </div>
           <div class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand"><a href='../#'>Noobest</a></h3>
@@ -53,15 +50,11 @@
           </div>
 
             <div class="inner cover lead">
-             <h1 class="cover-heading">Search</h1>
-             <p class="lead">Please enter your League of Lengend Username:</p>
-              <input id="name" class="input" name="game_id" type="text" maxlength="50"/>
+             <h1 class="cover-heading">Loading...</h1>
+             <p> Please wait while we are trying to find your noobest friend </p>
             </div>
-              <div class="btn-group">
-                <input type="checkbox" id="complex_mode" value="complex"> Accurate Mode <br>
-              </div>
-              <div>
-            <button id="submit" class="btn button" type="button">Submit</a>
+            <div id="loading">
+              <div id="loading_bar"></div>
             </div>
           <div class="mastfoot">
             <div class="inner">
@@ -74,29 +67,28 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-        $('#complex_mode').click(function() {
-            $('#warning_msg').toggle(this.checked);
-        });
-        $('#submit').click(function() {
-          data = {
-             'name': $('#name').val(),
-             'complex_mode': $('#complex_mode').val(),
-             'csrfmiddlewaretoken': "{{ csrf_token }}",
-          }
-          $.ajax({
-            url: "/search/",
-            type: "POST",
-            async: true,
-            data: data,
-            error: function(data) {
-              console.log(data);
-            },
-            success: function(data) {
-              window.location.replace("/transition/");
-            }
-          });
-        });
+    <script> 
+      var elem = document.getElementById("loading_bar");   
+      var width = 1;
+      var id = setInterval(frame, 130);
+
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+          window.location.replace("/result/");
+        } else {
+          width++; 
+          elem.style.width = width + '%'; 
+        }
+      }
+
+      function sleep(seconds) {
+        d = new Date()
+        var start = d.getSeconds();
+        while(((now = new Date().getSeconds()) - start) < seconds) {
+          //alert(now)
+      };
+      }
     </script>
   </body>
 </html>
