@@ -10,6 +10,12 @@ def index(request):
 def about(request):
     return render(request, "about.html", locals())
 
+def result(request):
+    return render(request, "result.html", locals())
+def transition(request):
+    return render(request, "transition.html", locals())
+
+
 def summoner(request):
     print "returning result"
     if request.is_ajax():
@@ -21,6 +27,7 @@ def summoner(request):
 
 def search(request):
     if request.is_ajax():
+<<<<<<< HEAD
         if not 'name' in request.POST:
             return render(request, "search.html", locals())
 
@@ -102,47 +109,6 @@ def search(request):
                 print "kill_contribution :" + str(kill_contribution)
                 print ""   
                 
-        # for match_detail in match_details:
-        #     for data in match_detail['participantIdentities']:
-        #         if data['player']['summonerName'] in friends_id:
-        #             print data['player']['summonerName']
-
-        #for friends_id_object in friends_id:
-        #     for data in match_detail['participantIdentities']:
-        #         if data['player']['summonerId'] == friends_id_object:
-        #             print friends_id_object
-                #summonerId_list_in_Game = match_detail['summonerID']
-                # if found:      
-                #     print 'found'
+                
         return render(request, "result.html", locals())
- 
-        # if not exists('name'):
-        #     return render(request, "error.html", locals())
-        # else:
-        #     # check if we have API calls remaining
-        #    print(get_watcher().can_make_request())
-
-        # try:
-        #     me = get_watcher().get_summoner(name=name)
-        #     print(me)
-        # except:
-        #     error_code = ErrorList.USER_NOT_FOUND
-        #     return render(request, "search.html", locals())
-
-        # match = get_watcher().get_match_list(me['id'],'na')
-        # #print(match)
-        # match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:9]
-        # print(match_id_list)
-        # match_result_list[9]
-        # count = 0
-        # for match_id in match_id_list:
-        #     match_result_list[count] = get_watcher().get_match(match_id)
-        #     count = count + 1
-            
-        # #rank(user)
-        # rank(match_result_list)
-
-        # redirect to result display page
-
-        #return render(request, "result.html", locals())
     return render(request, "search.html", locals())

@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Result</title>
+    <title>Search</title>
 
     <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->
@@ -23,8 +23,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template -->
-    <link href="{% static "css/result.css" %}" rel="stylesheet">
+    <link href="{% static "css/search.css" %}" rel="stylesheet">
 
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 
   <body>
@@ -34,39 +42,53 @@
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
-
           <div class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand"><a href='../#'>Noobest</a></h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li><a href="../index">Home</a></li>
-                </ul>
-              </nav>
+              
             </div>
           </div>
-          <div class="inner cover">
-            <h1 class="cover-heading">Your noobest teamate is: </h1>
-          </div>
-          <div>
-            <h1>(Name goes here) ANYONE NOT ME! </h1>
-          </div>
 
-          
-          <!--div id="loading"> 
-            <div id="loading-bar"> </div>
-          </div-->
+            <div class="inner cover lead">
+             <h1 class="cover-heading">Loading...</h1>
+             <p> Please wait while we are trying to find your noobest friend </p>
+            </div>
+            <div id="loading">
+              <div id="loading_bar"></div>
+            </div>
           <div class="mastfoot">
             <div class="inner">
               <p>Noobest Team</p>
             </div>
           </div>
-
         </div>
-
       </div>
 
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script> 
+      var elem = document.getElementById("loading_bar");   
+      var width = 1;
+      var id = setInterval(frame, 130);
+
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+          window.location.replace("/result/");
+        } else {
+          width++; 
+          elem.style.width = width + '%'; 
+        }
+      }
+
+      function sleep(seconds) {
+        d = new Date()
+        var start = d.getSeconds();
+        while(((now = new Date().getSeconds()) - start) < seconds) {
+          //alert(now)
+      };
+      }
+    </script>
   </body>
 </html>
