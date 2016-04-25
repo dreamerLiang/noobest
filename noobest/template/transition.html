@@ -61,6 +61,8 @@
               <p>Noobest Team</p>
             </div>
           </div>
+
+          <button id="go-to-result" class="button go-to-result" type="button"> Go To Result</button>
         </div>
       </div>
 
@@ -68,6 +70,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script> 
+      $("#go-to-result").hide();
       var elem = document.getElementById("loading_bar");   
       var width = 1;
       var id = setInterval(frame, 130);
@@ -75,7 +78,7 @@
       function frame() {
         if (width >= 100) {
           clearInterval(id);
-          window.location.replace("/result/");
+          $("#go-to-result").show();
         } else {
           width++; 
           elem.style.width = width + '%'; 

@@ -70,7 +70,37 @@ body {
   color: black;
 }
 
+#noobest-name {
+  color: yellow;
+}
 
+#friend-ranking-table {
+  border: none;
+  width: 250px;
+  border-top: 1px solid #ccc;
+}
+
+#friend-ranking-table caption {
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 20px;
+  margin: 0 0 20px 0;
+  padding: 0;
+  text-align: center;
+}
+
+#friend-ranking-table thead {
+  background: grey;
+}
+#friend-ranking-table th, 
+#friend-ranking-table td {
+  border: none; /* Turn off all borders */
+  border-bottom: 1px solid #ccc;
+  margin: 0;
+  padding: 10px;
+  text-align: left; 
+}
 /*
  * Header
  */

@@ -72,6 +72,10 @@ body {
   color: black;
 }
 
+.go-to-result {
+  position: relative;
+}
+
 .button {
   background-color: #4CAF50; /* Green */
   margin-top: 80px;
