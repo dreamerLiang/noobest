@@ -70,6 +70,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script> 
+      $( "#go-to-result" ).click(function() {
+        window.location.replace("/result/"); // + {{id}});
+      });
+
       $("#go-to-result").hide();
       var elem = document.getElementById("loading_bar");   
       var width = 1;
