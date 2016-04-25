@@ -32,7 +32,8 @@ def search(request):
             error_code = ErrorList.USER_NOT_FOUND
             return render(request, "search.html", locals())
         match = get_watcher().get_match_list(me['id'],'na')
-        match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:20]
+        match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:5]
+        print(match_id_list)
         match_details = []
         all_players_id = dict()
 
@@ -51,12 +52,55 @@ def search(request):
 
         for fid in friends_id:
             #print all_players_id[fid]
+            #arrayList for a friend to rank
+            minionsKilled = 0
+            goldEarned = 0
+            totalDamageDealtToChampions = 0
+            kills = 0
+          
+            damage_per_gold = 0
+            cs_per_minute = 0
+            kda = 0
+            kill_contribution = 0
+            
+            #hard code
+            match_time = 1800
+            teamKills = 20
+            arrayList_for_rank = []
             for data in all_players_id[fid]:
                 #print data
                 specific_match = data[0]
-                #print specific_match
-                for participants in specific_match['participants'][0]['stats']:
-                    print specific_match['participants'][0]['stats'][participants]    
+                position = data[1]
+                for participants in specific_match['participants'][position - 1]['stats']:
+                    if str(participants) == 'goldEarned':
+                        goldEarned = specific_match['participants'][position - 1]['stats'][participants] 
+                        print str(position) + " " + str(participants) + ":" + str(goldEarned) #+ str(specific_match['participants'][position - 1]['stats'][participants])  
+                    elif str(participants) == 'totalDamageDealtToChampions':
+                        totalDamageDealtToChampions = specific_match['participants'][position - 1]['stats'][participants] 
+                        print str(position) + " " + str(participants) + ":" + str(totalDamageDealtToChampions)  
+                    elif str(participants) == 'minionsKilled': 
+                        minionsKilled = specific_match['participants'][position - 1]['stats'][participants]
+                        print str(position) + " " + str(participants) + ":" + str(minionsKilled)
+                    elif str(participants) == 'kills':
+                        kills = specific_match['participants'][position - 1]['stats'][participants]
+                        print str(position) + " " + str(participants) + ":" + str(kills)
+                    elif str(participants) == 'assists':
+                        assists = specific_match['participants'][position - 1]['stats'][participants]
+                        print str(position) + " " + str(participants) + ":" + str(assists)
+                    elif str(participants) == 'deaths':
+                        deaths = specific_match['participants'][position - 1]['stats'][participants]
+                        print str(position) + " " + str(participants) + ":" + str(deaths)
+           
+                damage_per_gold = float(totalDamageDealtToChampions) / float(goldEarned)
+                cs_per_minute = float(minionsKilled) / float((match_time / 60))
+                kda = float((kills + assists)) / float((deaths + 1))
+                kill_contribution = float((kills + assists)) / float(teamKills)
+                print ""
+                print "damage_per_gold :" + str(damage_per_gold)
+                print "cs_per_minute :" + str(cs_per_minute)
+                print "kda :" + str(kda)
+                print "kill_contribution :" + str(kill_contribution)
+                print ""   
                 
         # for match_detail in match_details:
         #     for data in match_detail['participantIdentities']:
