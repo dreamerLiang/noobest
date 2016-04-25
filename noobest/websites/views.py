@@ -27,7 +27,6 @@ def summoner(request):
 
 def search(request):
     if request.is_ajax():
-<<<<<<< HEAD
         if not 'name' in request.POST:
             return render(request, "search.html", locals())
 
@@ -98,17 +97,27 @@ def search(request):
                         deaths = specific_match['participants'][position - 1]['stats'][participants]
                         print str(position) + " " + str(participants) + ":" + str(deaths)
            
-                damage_per_gold = float(totalDamageDealtToChampions) / float(goldEarned)
-                cs_per_minute = float(minionsKilled) / float((match_time / 60))
-                kda = float((kills + assists)) / float((deaths + 1))
-                kill_contribution = float((kills + assists)) / float(teamKills)
+                damage_per_gold += float(totalDamageDealtToChampions) / float(goldEarned)
+                cs_per_minute += float(minionsKilled) / float((match_time / 60))
+                kda += float((kills + assists)) / float((deaths + 1))
+                kill_contribution += float((kills + assists)) / float(teamKills)
                 print ""
                 print "damage_per_gold :" + str(damage_per_gold)
                 print "cs_per_minute :" + str(cs_per_minute)
                 print "kda :" + str(kda)
                 print "kill_contribution :" + str(kill_contribution)
-                print ""   
-                
-                
+                print "" 
+
+            damage_per_gold /= len(all_players_id[fid])
+            cs_per_minute /= len(all_players_id[fid])  
+            kda /= len(all_players_id[fid])
+            kill_contribution /= len(all_players_id[fid])
+            print ""
+            print "total damage_per_gold :" + str(damage_per_gold)
+            print "total cs_per_minute :" + str(cs_per_minute)
+            print "total kda :" + str(kda)
+            print "total kill_contribution :" + str(kill_contribution)
+            print "" 
+
         return render(request, "result.html", locals())
     return render(request, "search.html", locals())
