@@ -57,6 +57,8 @@ def search(request):
         print friends_id
 
         for fid in friends_id:
+            if fid == me['id']:
+                continue
             #print all_players_id[fid]
             #arrayList for a friend to rank
             minionsKilled = 0
