@@ -62,6 +62,7 @@ body {
 /* Legend */
 .legend {
   /*background: #f0f0f0;*/
+  color:white;
   border-radius: 4px;
   bottom: 0;
   position: absolute;
@@ -74,7 +75,7 @@ body {
   height: 20px;
   margin: 0;
   padding: 10px 30px;
-  width: 1200px;
+  width: 1000px;
 }
 .legend span.icon {
   background-position: 50% 0;
@@ -92,13 +93,13 @@ body {
   color: #FFF8F8;
   position: absolute;
   text-align: center;
-  width: 540px;
+  width: 360px;
 }
 .x-axis li {
   float: left;
   margin: 0 15px;
   padding: 5px 0;
-  width: 90px;  
+  width: 35px;  
 }
 
 
@@ -134,14 +135,14 @@ body {
   height: 100%;
   margin: 0 15px;
   position: relative;
-  width: 90px;
+  width: 36px;
 }
 
 .caption_ranking {
   margin-top: 50px;
   font-size: 25px;
   position: relative;
-  right: 17%;
+  right: 31%;
 }
 
 .bar {
@@ -151,19 +152,19 @@ body {
   height: 0;
   position: absolute;
   text-align: center;
-  width: 24px;
+  width: 12px;
 }
 .bar.fig0 {
   left: 0;
 }
 .bar.fig1 {
-  left: 26px;
+  left: 12px;
 }
 .bar.fig2 {
-  left: 52px;
+  left: 24px;
 }
 .bar.fig3 {
-  left: 78px;
+  left: 36px;
 }
 .bar span {
   background: #fefefe;
