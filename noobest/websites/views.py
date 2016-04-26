@@ -15,6 +15,8 @@ def result(request):
 def transition(request):
     return render(request, "transition.html", locals())
 
+def testing(request):
+    return render(request, "testing.html", locals())
 
 def summoner(request):
     print "returning result"
