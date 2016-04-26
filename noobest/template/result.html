@@ -22,6 +22,10 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="http://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+    
+
     <!-- Custom styles for this template -->
     <link href="{% static "css/result.css" %}" rel="stylesheet">
 <!--     <link href="http://provide.smashingmagazine.com/graph_tut_files/css/common.css" rel="stylesheet">
@@ -97,7 +101,8 @@
           </tbody>
         </table>
       </div>
-          
+          <div id="chartContainer" style="height: 300px; width: 100%;">
+          </div>
           <!--div id="loading"> 
             <div id="loading-bar"> </div>
           </div-->
@@ -312,6 +317,32 @@
           
           // Finally, display graph via reset function
           resetGraph();
+
+
+          //the pie graph
+          var options = {
+              title: {
+                text: "Column Chart using jQuery Plugin"
+              },
+                          animationEnabled: true,
+              data: [
+              {
+                type: "pie", //change it to line, area, bar, pie, etc
+                dataPoints: [
+                  { x: 10, y: 10 },
+                  { x: 20, y: 11 },
+                  { x: 30, y: 14 },
+                  { x: 40, y: 16 },
+                  { x: 50, y: 19 },
+                  { x: 60, y: 15 },
+                  { x: 70, y: 12 },
+                  { x: 80, y: 10 }
+                ]
+              }
+              ]
+            };
+
+            $("#chartContainer").CanvasJSChart(options);      
         } 
       });
     </script>
