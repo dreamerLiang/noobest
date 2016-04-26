@@ -1,34 +1,40 @@
 #coding: utf-8
 
 from riotwatcher import RiotWatcher, RateLimit
-import random
 from kmean import Kmean
+from rank.models import Player
+from utils.api import get_watcher
+import random
+import time
 
-#watcher = RiotWatcher('96a7f2b9-8718-44e3-b5f9-d6316ffc47e3')
+names = ['danjuanmao', 'wukoutian', 'PicturedLighting', 'MYETM', 'lceland', 'Theifz', 'Eveloken']
 
-keys = ['03351eab-47cc-4a7f-97e0-af22a7c43782', 'b7f9571e-eeef-4c8d-a5a8-cb835a6f940d', '96a7f2b9-8718-44e3-b5f9-d6316ffc47e3']
+target = []
 
-watchers = [RiotWatcher(key, limits=(RateLimit(10, 10), )) for key in keys]
+for name in names:
+	me = get_watcher().get_summoner(name=name)
+	users = get_watcher().get_league([me['id']], region='na')[str(me['id'])][0]['entries']
+	for user in users:
+		player = Player.objects.get(username=user['playerOrTeamName'], userid=int(user['playerOrTeamId']))
+		if user['division'] == "I":
+			player.division = 1
+		elif user['division'] == "II":
+			player.division = 2
+		elif user['division'] == "III":
+			player.division = 3
+		elif user['division'] == "IV":
+			player.division = 4
+		elif user['division'] == "V":
+			player.division = 5
+		player.save()
+		
+	# user_ids = [int(user['playerOrTeamId']) for user in users]
+	# target.append(user_ids)
 
-def get_watcher():
-	while not watchers[0].can_make_request():
-		temp = watchers.pop(0)
-		watchers.append(temp)
-	return watchers[0]
-
-names = ['danjuanmao', 'Mr Ha1f', 'wukoutian', 'lceland', 'simple cup lin', 'Dsola', 'FlaminG GUI', 'PicturedLighting', 'MYETM']
-
-name = 'wukoutian'
-me = get_watcher().get_summoner(name=name)
-match = get_watcher().get_match_list(me['id'],'na')
-match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:9]
-
-match_id = match_id_list[0]
-match_detail = get_watcher().get_match(match_id)
-
-print match_detail
+# open("training_user_ids.txt", "w").write(str(target))
 
 
+# print len(data[0] + data[1] + data[2] + data[3] + data[4] + data[5] + data[6])
 
 
 # points = [[1, 2], [2, 1], [3, 1], [5, 4], [5, 5], [6, 5], [7, 9], [99, 96], [94, 91], [92, 89]]
