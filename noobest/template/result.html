@@ -55,7 +55,7 @@
             <h1 class="cover-heading">Your noobest teammate is: </h1>
           </div>
           <div>
-            <h1 id="noobest-name">(Name goes here) ANYONE NOT ME! </h1>
+            <h1 id="noobest-name">Fk yaaaaaaaaaaaa </h1>
           </div>
       <div class="chart">
         <table id="data-table" border="1" cellpadding="10" cellspacing="0">
@@ -100,6 +100,8 @@
             </tr>
           </tbody>
         </table>
+
+        <canvas id="myChart" class="myChart"></canvas>
       </div>
           <div id="chartContainer" style="height: 300px; width: 100%;">
           </div>
@@ -119,6 +121,7 @@
     </div><!-- 
     <script src="http://provide.smashingmagazine.com/graph_tut_files/js/04.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static "js/Chart.js" %}"></script>
     <script>
       $(document).ready(function() {
       // Create our graph from the data table and specify a container to put the graph in
@@ -149,7 +152,6 @@
               data.find('tbody td').each(function() {
                 chartData.push($(this).text());
               });
-              console.log("-" + data.text() + "-")
               return chartData;
             },
             // Get heading data from table caption
@@ -306,43 +308,40 @@
               displayGraph(bars, 0);
             }, 200);
           }
-          
-          // Helper functions
-          
-          // Call resetGraph() when button is clicked to start graph over
-          $('#reset-graph-button').click(function() {
-            resetGraph();
-            return false;
-          });
+
           
           // Finally, display graph via reset function
           resetGraph();
 
-
-          //the pie graph
-          var options = {
-              title: {
-                text: "Column Chart using jQuery Plugin"
-              },
-                          animationEnabled: true,
-              data: [
+      var data = {
+          labels: ["Eating", "Drinking", "Sleeping", "Designing"],
+          datasets: [
               {
-                type: "pie", //change it to line, area, bar, pie, etc
-                dataPoints: [
-                  { x: 10, y: 10 },
-                  { x: 20, y: 11 },
-                  { x: 30, y: 14 },
-                  { x: 40, y: 16 },
-                  { x: 50, y: 19 },
-                  { x: 60, y: 15 },
-                  { x: 70, y: 12 },
-                  { x: 80, y: 10 }
-                ]
-              }
-              ]
-            };
-
-            $("#chartContainer").CanvasJSChart(options);      
+                  label: "Why is he the noobest",
+                   backgroundColor: "rgba(45, 148, 238, 0.6)", //"rgba(226,236,71, 0.6)",
+                   borderColor: "rgba(226,236,71, 0.1)",
+                   pointBackgroundColor: "rgba(226,236,71, 0.1)",
+                   pointBorderColor: "#C3C3C3",
+                   pointHoverBackgroundColor: "#C3C3C3",
+                   pointHoverBorderColor: "rgba(226,236,71, 0.1)",
+                  data: [65, 59, 90, 81]
+              },
+          ]
+      };
+      var ctx = document.getElementById("myChart");
+      var myRadarChart = new Chart(ctx, {
+          type: "radar",
+          data: data,
+          options: {
+                  scale: {
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }
+          }
+      });
+   
+      //$("#figure").hide();
         } 
       });
     </script>

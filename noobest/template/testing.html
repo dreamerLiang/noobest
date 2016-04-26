@@ -4,346 +4,55 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Result</title>
+    <title>Search</title>
 
     <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+ <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="http://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-
-    
+<!--     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
 
     <!-- Custom styles for this template -->
-    <link href="{% static "css/testing.css" %}" rel="stylesheet">
-<!--     <link href="http://provide.smashingmagazine.com/graph_tut_files/css/common.css" rel="stylesheet">
-    <link href="http://provide.smashingmagazine.com/graph_tut_files/css/04.css" rel="stylesheet">
- -->
+    <link href="{% static "css/magnific-popup.css" %}" rel="stylesheet">
+    <link href="{% static "js/jquery.magnific-popup.js" %}" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 
   <body>
-
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand"><a href='../#'>Noobest</a></h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li><a href="../index">Home</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-          <div class="inner cover">
-            <h1 class="cover-heading">Your noobest teammate is: </h1>
-          </div>
-          <div>
-            <h1 id="noobest-name">(Name goes here) ANYONE NOT ME! </h1>
-          </div>
-      <div class="chart">
-        <table id="data-table" border="1" cellpadding="10" cellspacing="0">
-          <p class="caption_ranking">Noobest ranking</p>
-          <thead>
-            <tr>
-              <td>&nbsp;</td>
-              <th scope="col">1</th>
-              <th scope="col">2</th>
-              <th scope="col">3</th>
-              <th scope="col">4</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Carbon Tiger</th>
-              <td>4080</td>
-              <td>6080</td>
-              <td>6240</td>
-              <td>3520</td>
-            </tr>
-            <tr>
-              <th scope="row">Blue Monkey</th>
-              <td>5680</td>
-              <td>6880</td>
-              <td>5760</td>
-              <td>2640</td>
-            </tr>
-            <tr>
-              <th scope="row">Tanned Zombie</th>
-              <td>1040</td>
-              <td>1760</td>
-              <td>2880</td>
-              <td>7520</td>
-            </tr>
-            <tr>
-              <th scope="row">BOSSSSS</th>
-              <td>2343</td>
-              <td>3920</td>
-              <td>1023</td>
-              <td>0109</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <canvas id="myChart" class="myChart"></canvas>
-      </div>
-          <div id="chartContainer" style="height: 300px; width: 100%;">
-          </div>
-          <!--div id="loading"> 
-            <div id="loading-bar"> </div>
-          </div-->
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Noobest Team</p>
-            </div>
-          </div>
-
+        <div>
+          <!-- <button id="video" href="https://www.youtube.com/watch?v=H_OlFJgzejY" class="video go-to-result button" type="button"> Check out what noobs usually do</button> -->
+          <!-- <a class="video" href="http://www.dailymotion.com/video/xxgmlg_the-ghosts-everything-will-do_music#.UV71MasY3wE">Open DailyMotion video</a> -->
+          <button class="video" href="https://www.youtube.com/watch?v=H_OlFJgzejY">Working</button>
         </div>
 
-      </div>
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/jquery.magnific-popup.js" %}"></script>
+    <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+    <!-- <script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout-f961f59a28ef4fd551736b43f94620b5.js"> --></script>
+    <script> 
 
-    </div><!-- 
-    <script src="http://provide.smashingmagazine.com/graph_tut_files/js/04.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="{% static "js/Chart.js" %}"></script>
-    <script>
-      $(document).ready(function() {
-      // Create our graph from the data table and specify a container to put the graph in
-        //createGraph('#friend-ranking-table-table', '.friend-ranking-chart');
-        createGraph('#data-table', '.chart');
-        // Here be graphs
-        function createGraph(data, container) {
-          // Declare some common variables and container elements 
-          var bars = [];
-          var figureContainer = $('<div id="figure"></div>');
-          var graphContainer = $('<div class="graph"></div>');
-          var barContainer = $('<div class="bars"></div>');
-          var data = $(data);
-          var container = $(container);
-          var chartData;    
-          var chartYMax;
-          var columnGroups;
-          
-          // Timer variables
-          var barTimer;
-          var graphTimer;
-
-          // Create table data object
-          var tableData = {
-            // Get numerical data from table cells
-            chartData: function() {
-              var chartData = [];
-              data.find('tbody td').each(function() {
-                chartData.push($(this).text());
-              });
-              return chartData;
-            },
-            // Get heading data from table caption
-            chartHeading: function() {
-              var chartHeading = data.find('caption').text();
-              return chartHeading;
-            },
-            // Get legend data from table body
-            chartLegend: function() {
-              var chartLegend = [];
-              // Find th elements in table body - that will tell us what items go in the main legend
-              data.find('tbody th').each(function() {
-                chartLegend.push($(this).text());
-              });
-              return chartLegend;
-            },
-            // Get highest value for y-axis scale
-            chartYMax: function() {
-              var chartData = this.chartData();
-              // Round off the value
-              var chartYMax = Math.ceil(Math.max.apply(Math, chartData) / 1000) * 1000;
-              return chartYMax;
-            },
-            // Get y-axis data from table cells
-            yLegend: function() {
-              var chartYMax = this.chartYMax();
-              var yLegend = [];
-              // Number of divisions on the y-axis
-              var yAxisMarkings = 5;            
-              // Add required number of y-axis markings in order from 0 - max
-              for (var i = 0; i < yAxisMarkings; i++) {
-                yLegend.unshift(((chartYMax * i) / (yAxisMarkings - 1)) / 1000);
-              }
-              return yLegend;
-            },
-            // Get x-axis data from table header
-            xLegend: function() {
-              var xLegend = [];
-              // Find th elements in table header - that will tell us what items go in the x-axis legend
-              data.find('thead th').each(function() {
-                xLegend.push($(this).text());
-              });
-              return xLegend;
-            },
-            // Sort data into groups based on number of columns
-            columnGroups: function() {
-              var columnGroups = [];
-              // Get number of columns from first row of table body
-              var columns = data.find('tbody tr:eq(0) td').length;
-              for (var i = 0; i < columns; i++) {
-                columnGroups[i] = [];
-                data.find('tbody tr').each(function() {
-                  columnGroups[i].push($(this).find('td').eq(i).text());
-                });
-              }
-              return columnGroups;
-            }
-          }
-          
-          // Useful variables for accessing table data    
-          chartData = tableData.chartData();    
-          chartYMax = tableData.chartYMax();
-          columnGroups = tableData.columnGroups();
-          
-          // Construct the graph
-          
-          // Loop through column groups, adding bars as we go
-          $.each(columnGroups, function(i) {
-            // Create bar group container
-            var barGroup = $('<div class="bar-group"></div>');
-            // Add bars inside each column
-            for (var j = 0, k = columnGroups[i].length; j < k; j++) {
-              // Create bar object to store properties (label, height, code etc.) and add it to array
-              // Set the height later in displayGraph() to allow for left-to-right sequential display
-              var barObj = {};
-              barObj.label = this[j];
-              barObj.height = Math.floor(barObj.label / chartYMax * 100) + '%';
-              barObj.bar = $('<div class="bar fig' + j + '"><span>' + barObj.label + '</span></div>')
-                .appendTo(barGroup);
-              bars.push(barObj);
-            }
-            // Add bar groups to graph
-            barGroup.appendTo(barContainer);      
-          });
-          
-          // Add heading to graph
-          var chartHeading = tableData.chartHeading();
-          var heading = $('<h4>' + chartHeading + '</h4>');
-          heading.appendTo(figureContainer);
-          
-          // Add legend to graph
-          var chartLegend = tableData.chartLegend();
-          var legendList  = $('<ul class="legend"></ul>');
-          $.each(chartLegend, function(i) {     
-            var listItem = $('<li><span class="icon fig' + i + '"></div></span>' + this + '</li>')
-              .appendTo(legendList);
-          });
-          legendList.appendTo(figureContainer);
-          
-          // Add x-axis to graph
-          var xLegend = tableData.xLegend();    
-          var xAxisList = $('<ul class="x-axis"></ul>');
-          $.each(xLegend, function(i) {     
-            var listItem = $('<li><span>' + this + '</span></li>')
-              .appendTo(xAxisList);
-          });
-          xAxisList.appendTo(graphContainer);
-          
-          // Add y-axis to graph  
-          var yLegend = tableData.yLegend();
-          var yAxisList = $('<ul class="y-axis"></ul>');
-          $.each(yLegend, function(i) {     
-            var listItem = $('<li><span>' + this + '</span></li>')
-              .appendTo(yAxisList);
-          });
-          yAxisList.appendTo(graphContainer);   
-          
-          // Add bars to graph
-          barContainer.appendTo(graphContainer);    
-          
-          // Add graph to graph container   
-          graphContainer.appendTo(figureContainer);
-          
-          // Add graph container to main container
-          figureContainer.appendTo(container);
-          
-          // Set individual height of bars
-          function displayGraph(bars, i) {
-            // Changed the way we loop because of issues with $.each not resetting properly
-            if (i < bars.length) {
-              // Add transition properties and set height via CSS
-              $(bars[i].bar).css({'height': bars[i].height, '-webkit-transition': 'all 0.8s ease-out'});
-              // Wait the specified time then run the displayGraph() function again for the next bar
-              barTimer = setTimeout(function() {
-                i++;        
-                displayGraph(bars, i);
-              }, 100);
-            }
-          }
-          
-          // Reset graph settings and prepare for display
-          function resetGraph() {
-            // Set bar height to 0 and clear all transitions
-            $.each(bars, function(i) {
-              $(bars[i].bar).stop().css({'height': 0, '-webkit-transition': 'none'});
-            });
-            
-            // Clear timers
-            clearTimeout(barTimer);
-            clearTimeout(graphTimer);
-            
-            // Restart timer    
-            graphTimer = setTimeout(function() {    
-              displayGraph(bars, 0);
-            }, 200);
-          }
-
-          
-          // Finally, display graph via reset function
-          resetGraph();
-
-			var data = {
-			    labels: ["Eating", "Drinking", "Sleeping", "Designing"],
-			    datasets: [
-			        {
-			            label: "Why is he the noobest",
-			             backgroundColor: "rgba(45, 148, 238, 0.6)", //"rgba(226,236,71, 0.6)",
-			             borderColor: "rgba(226,236,71, 0.1)",
-			             pointBackgroundColor: "rgba(226,236,71, 0.1)",
-			             pointBorderColor: "#C3C3C3",
-			             pointHoverBackgroundColor: "#C3C3C3",
-			             pointHoverBorderColor: "rgba(226,236,71, 0.1)",
-			            data: [65, 59, 90, 81]
-			        },
-			    ]
-			};
-			var ctx = document.getElementById("myChart");
-			var myRadarChart = new Chart(ctx, {
-			    type: "radar",
-			    data: data,
-			    options: {
-			            scale: {
-			                ticks: {
-			                    beginAtZero: true
-			                }
-			            }
-			    }
-			});
-   
-      //$("#figure").hide();
-        } 
-      });
+$('.video').magnificPopup({
+    type: 'iframe'
+});
     </script>
   </body>
 </html>

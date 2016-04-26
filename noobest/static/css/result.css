@@ -16,12 +16,27 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: grey;
+  background-color: #C3C3C3;
   /*
   background-image: url("https://i0.wp.com/cdn3.dualshockers.com/wp-content/uploads/2014/09/maxresdefault2-670x376.jpg?zoom=2");
   background-repeat: no-repeat;
   background-position: center
   */
+}
+
+.myChart {
+  width: 503px;
+  height: 245px;/*
+  background-color: white;*/
+  border-color: white;
+  float: left;
+  position: absolute;
+  }
+
+
+.chartContainer {
+  style="height: 300px;
+  width: 100%;
 }
 
 .mfp-title {
@@ -139,7 +154,7 @@ body {
 }
 
 .caption_ranking {
-  margin-top: 50px;
+  margin-top: 20%;
   font-size: 25px;
   position: relative;
   right: 31%;
@@ -244,6 +259,8 @@ body {
 #noobest-name {
   color: yellow;
 }
+
+
 
 #data-table {
   margin-top: 2000px;
