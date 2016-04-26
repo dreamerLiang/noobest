@@ -53,32 +53,50 @@
           <div>
             <h1 id="noobest-name">(Name goes here) ANYONE NOT ME! </h1>
           </div>
-          <div class="friend-ranking-chart">
-
-          <table id="friend-ranking-table" border="1" cellpadding="50" cellspacing="0" >
-          <caption>Your friend</caption>
+      <div class="chart">
+        <table id="data-table" border="1" cellpadding="10" cellspacing="0">
+          <p class="caption_ranking">Noobest ranking</p>
           <thead>
             <tr>
               <td>&nbsp;</td>
-              <th scope="col">2015</th>
+              <th scope="col">Team mate 1</th>
+              <th scope="col">Team mate 2</th>
+              <th scope="col">Team mate 3</th>
+              <th scope="col">Team mate 4</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Strongest</th>
+              <th scope="row">Carbon Tiger</th>
               <td>4080</td>
+              <td>6080</td>
+              <td>6240</td>
+              <td>3520</td>
             </tr>
             <tr>
-              <th scope="row">Second Strongest</th>
-              <td>5120</td>
+              <th scope="row">Blue Monkey</th>
+              <td>5680</td>
+              <td>6880</td>
+              <td>5760</td>
+              <td>2640</td>
             </tr>
             <tr>
-              <th scope="row">Third Strongest</th>
+              <th scope="row">Tanned Zombie</th>
               <td>1040</td>
+              <td>1760</td>
+              <td>2880</td>
+              <td>7520</td>
+            </tr>
+            <tr>
+              <th scope="row">BOSSSSS</th>
+              <td>2343</td>
+              <td>3920</td>
+              <td>1023</td>
+              <td>0109</td>
             </tr>
           </tbody>
         </table>
-          </div>
+      </div>
           
           <!--div id="loading"> 
             <div id="loading-bar"> </div>
@@ -99,7 +117,8 @@
     <script>
       $(document).ready(function() {
       // Create our graph from the data table and specify a container to put the graph in
-        createGraph('#friend-ranking-table-table', '.friend-ranking-chart');
+        //createGraph('#friend-ranking-table-table', '.friend-ranking-chart');
+        createGraph('#data-table', '.chart');
         // Here be graphs
         function createGraph(data, container) {
           // Declare some common variables and container elements 
@@ -116,7 +135,7 @@
           // Timer variables
           var barTimer;
           var graphTimer;
-          
+
           // Create table data object
           var tableData = {
             // Get numerical data from table cells
@@ -125,6 +144,7 @@
               data.find('tbody td').each(function() {
                 chartData.push($(this).text());
               });
+              console.log("-" + data.text() + "-")
               return chartData;
             },
             // Get heading data from table caption

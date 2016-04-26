@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^search', views.search),
     url(r'^result', views.result),
     url(r'^transition', views.transition),
+    url(r'^testing', views.testing),
 ]
