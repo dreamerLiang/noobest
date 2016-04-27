@@ -99,7 +99,7 @@
               
             }
           });
-          window.location.replace("/transition/" + $('#name').val());
+          window.location.replace("/transition/" + $('#name').val().replace(/\s+/g, '-'));
         });
     </script>
   </body>
