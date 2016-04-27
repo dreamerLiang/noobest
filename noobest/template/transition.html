@@ -24,6 +24,8 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "css/search.css" %}" rel="stylesheet">
+    <link href="{% static "css/magnific-popup.css" %}" rel="stylesheet">
+    <link href="{% static "js/jquery.magnific-popup.js" %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -64,11 +66,15 @@
 
           <button id="go-to-result" class="button go-to-result" type="button"> Go To Result</button>
         </div>
+        <button class="video button" href="https://www.youtube.com/watch?v=H_OlFJgzejY"> Click to see what noob does</button>
       </div>
 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/jquery.magnific-popup.js" %}"></script>
+    <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
     <script> 
       $( "#go-to-result" ).click(function() {
         window.location.replace("/result/"); // + {{id}});
@@ -83,6 +89,7 @@
         if (width >= 100) {
           clearInterval(id);
           $("#go-to-result").show();
+          $(".video").hide();
         } else {
           width++; 
           elem.style.width = width + '%'; 
@@ -96,6 +103,9 @@
           //alert(now)
       };
       }
+      $('.video').magnificPopup({
+          type: 'iframe'
+      });
     </script>
   </body>
 </html>
