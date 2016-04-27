@@ -130,7 +130,7 @@ body {
   float: left;
   margin: 0 15px;
   padding: 5px 0;
-  width: 35px;  
+  width: -46px;  
 }
 
 
@@ -166,7 +166,7 @@ body {
   height: 100%;
   margin: 0 15px;
   position: relative;
-  width: 36px;
+  width: 58px;
 }
 
 .bar {

@@ -55,7 +55,7 @@
             <h1 class="cover-heading">Your noobest teammate is: </h1>
           </div>
           <div>
-            <h1 id="noobest-name">{{ username }} </h1>
+            <h1 id="noobest-name">{{noobest}}</h1>
           </div>
       <div class="chart">
         <table id="data-table" border="1" cellpadding="10" cellspacing="0">
@@ -63,47 +63,49 @@
           <thead>
             <tr>
               <td>&nbsp;</td>
-              <th scope="col">1</th>
-              <th scope="col">2</th>
-              <th scope="col">3</th>
-              <th scope="col">4</th>
+              <th scope="col">{{players_1.username}}</th>
+              <th scope="col">{{players_2.username}}</th>
+              <th scope="col">{{players_3.username}}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Carbon Tiger</th>
-              <td>4080</td>
-              <td>6080</td>
-              <td>6240</td>
-              <td>3520</td>
+              <th scope="row">creep score</th>
+              <td>{{players_1.get_user_vector_cs}}</td>
+              <td>{{players_2.get_user_vector_cs}}</td>
+              <td>{{players_3.get_user_vector_cs}}</td>
             </tr>
             <tr>
-              <th scope="row">Blue Monkey</th>
-              <td>5680</td>
-              <td>6880</td>
-              <td>5760</td>
-              <td>2640</td>
+              <th scope="row">ward place</th>
+              <td>{{players_1.get_user_vector_wd}}</td>
+              <td>{{players_2.get_user_vector_wd}}</td>
+              <td>{{players_3.get_user_vector_wd}}</td>
             </tr>
             <tr>
-              <th scope="row">Tanned Zombie</th>
-              <td>1040</td>
-              <td>1760</td>
-              <td>2880</td>
-              <td>7520</td>
+              <th scope="row">kill, dead, assist</th>
+              <td>{{players_1.get_user_vector_kda}}</td>
+              <td>{{players_2.get_user_vector_kda}}</td>
+              <td>{{players_3.get_user_vector_kda}}</td>
             </tr>
-            <tr>
-              <th scope="row">BOSSSSS</th>
-              <td>2343</td>
-              <td>3920</td>
-              <td>1023</td>
-              <td>0109</td>
+              <tr>
+              <th scope="row">damage_per_second</th>
+              <td>{{players_1.get_user_vector_dmg}}</td>
+              <td>{{players_2.get_user_vector_dmg}}</td>
+              <td>{{players_3.get_user_vector_dmg}}</td>
             </tr>
+
           </tbody>
         </table>
 
         <canvas id="myChart" class="myChart"></canvas>
       </div>
           <div id="chartContainer" style="height: 300px; width: 100%;">
+          </div>
+          <div style="display:none;">
+            <text id="cs"> {{player.get_user_vector_cs}}</text>
+            <text id="wd"> {{player.get_user_vector_wd}}</text>
+            <text id="kda"> {{player.get_user_vector_kda}}</text>
+            <text id="dmg"> {{player.get_user_vector_dmg}}</text>
           </div>
           <!--div id="loading"> 
             <div id="loading-bar"> </div>
@@ -171,6 +173,7 @@
             // Get highest value for y-axis scale
             chartYMax: function() {
               var chartData = this.chartData();
+              //console.log(chartData)
               // Round off the value
               var chartYMax = Math.ceil(Math.max.apply(Math, chartData) / 1000) * 1000;
               return chartYMax;
@@ -227,8 +230,8 @@
               // Create bar object to store properties (label, height, code etc.) and add it to array
               // Set the height later in displayGraph() to allow for left-to-right sequential display
               var barObj = {};
-              barObj.label = this[j];
-              barObj.height = Math.floor(barObj.label / chartYMax * 100) + '%';
+              barObj.label = this[j] / 1000;
+              barObj.height = Math.floor((barObj.label * 1000) / chartYMax * 100) + '%';
               barObj.bar = $('<div class="bar fig' + j + '"><span>' + barObj.label + '</span></div>')
                 .appendTo(barGroup);
               bars.push(barObj);
@@ -313,8 +316,15 @@
           // Finally, display graph via reset function
           resetGraph();
 
+
+          playerData=[65, 59, 90, 81];
+          playerData[0] = $('#cs').text();
+          playerData[1] = $('#wd').text();
+          playerData[2] = $('#kda').text();
+          playerData[3] = $('#dmg').text();
+          console.log(playerData);
       var data = {
-          labels: ["Eating", "Drinking", "Sleeping", "Designing"],
+          labels: ["cs_per_minute", "wards_placed_per_minute", "kda", "damage_per_gold"],
           datasets: [
               {
                   label: "Why is he the noobest",
@@ -324,7 +334,7 @@
                    pointBorderColor: "#C3C3C3",
                    pointHoverBackgroundColor: "#C3C3C3",
                    pointHoverBorderColor: "rgba(226,236,71, 0.1)",
-                  data: [65, 59, 90, 81]
+                  data: playerData
               },
           ]
       };

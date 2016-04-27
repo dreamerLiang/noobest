@@ -19,7 +19,13 @@ def result(request, username):
     player = Player.objects.get(username=username)
     friends_id = json.loads(player.friends.replace("'", '"'))['ids']
     players = Player.objects.filter(userid__in=friends_id).order_by('evaluation', 'total_score')
-    print ["rank: " + str(player.evaluation) + " total score: " + str(player.total_score) for player in players]
+    #print ["rank: " + str(player.evaluation) + " total score: " + str(player.total_score) for player in players]
+    noobest = players[0].username
+    players_1 = players[0]
+    cs = players_1.get_user_vector_cs()
+    print player.vector
+    players_2 = players[1]
+    players_3 = players[2]
     return render(request, "result.html", locals())
 
 def transition(request, username):
