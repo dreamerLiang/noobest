@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from django.contrib.postgres.fields import JSONField
 from rank.constants import RANK_DEFAULT_CHOICES
 from django.db import models
 import json
