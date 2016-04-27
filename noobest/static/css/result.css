@@ -24,6 +24,21 @@ body {
   */
 }
 
+.myChart_skills {
+  margin-top: 20%;
+  font-size: 25px;
+  position: relative;
+  left: 25%;
+  float: right;
+}
+
+.caption_ranking {
+  margin-top: 20%;
+  font-size: 25px;
+  position: relative;
+  right: 31%;
+}
+
 .myChart {
   width: 503px;
   height: 245px;/*
@@ -152,13 +167,6 @@ body {
   margin: 0 15px;
   position: relative;
   width: 36px;
-}
-
-.caption_ranking {
-  margin-top: 20%;
-  font-size: 25px;
-  position: relative;
-  right: 31%;
 }
 
 .bar {
