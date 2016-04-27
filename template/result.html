@@ -318,10 +318,10 @@
 
 
           playerData=[65, 59, 90, 81];
-          playerData[0] = $('#cs').text();
-          playerData[1] = $('#wd').text();
-          playerData[2] = $('#kda').text();
-          playerData[3] = $('#dmg').text();
+          playerData[0] = ($('#cs').text()) / 1000;
+          playerData[1] = ($('#wd').text()) / 1000;
+          playerData[2] = ($('#kda').text()) / 1000;
+          playerData[3] = ($('#dmg').text()) / 1000;
           console.log(playerData);
       var data = {
           labels: ["cs_per_minute", "wards_placed_per_minute", "kda", "damage_per_gold"],
