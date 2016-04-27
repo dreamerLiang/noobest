@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+        'NAME': 'd43867600af924624bd445fb9499784d8', 
+        'USER': 'uf350faa99d47487b85d3c94709d504dd', 
+        'PASSWORD': 'p12d022935d344ae48bda4986bd7c8613', 
+        'HOST': '198.11.228.50',
+        'PORT': 5433, 
     }
 }
 
@@ -123,9 +127,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static"),
+#]
 
 try:
     from config.local_settings import *

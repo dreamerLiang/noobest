@@ -19,7 +19,7 @@ def result(request, username):
     player = Player.objects.get(username=username)
     friends_id = json.loads(player.friends.replace("'", '"'))['ids']
     players = Player.objects.filter(userid__in=friends_id).order_by('evaluation', 'total_score')
-    #print ["rank: " + str(player.evaluation) + " total score: " + str(player.total_score) for player in players]
+    print [player.username + " rank: " + str(player.evaluation) + " total score: " + str(player.total_score) for player in players]
     noobest = players[0].username
     players_1 = players[0]
     cs = players_1.get_user_vector_cs()
@@ -93,7 +93,7 @@ def search(request):
             player.total_score = score['total']
             player.save()
 
-        return render(request, "result.html", locals())
+        #return render(request, "result.html", locals())
     return render(request, "search.html", locals())
 
  
