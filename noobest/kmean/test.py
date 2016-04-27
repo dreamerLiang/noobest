@@ -2,31 +2,31 @@
 
 from riotwatcher import RiotWatcher, RateLimit
 from kmean import Kmean
-from rank.models import Player
-from utils.api import get_watcher
+# from rank.models import Player
+# from utils.api import get_watcher
 import random
 import time
 
-names = ['danjuanmao', 'wukoutian', 'PicturedLighting', 'MYETM', 'lceland', 'Theifz', 'Eveloken']
+# names = ['danjuanmao', 'wukoutian', 'PicturedLighting', 'MYETM', 'lceland', 'Theifz', 'Eveloken']
 
-target = []
+# target = []
 
-for name in names:
-	me = get_watcher().get_summoner(name=name)
-	users = get_watcher().get_league([me['id']], region='na')[str(me['id'])][0]['entries']
-	for user in users:
-		player = Player.objects.get(username=user['playerOrTeamName'], userid=int(user['playerOrTeamId']))
-		if user['division'] == "I":
-			player.division = 1
-		elif user['division'] == "II":
-			player.division = 2
-		elif user['division'] == "III":
-			player.division = 3
-		elif user['division'] == "IV":
-			player.division = 4
-		elif user['division'] == "V":
-			player.division = 5
-		player.save()
+# for name in names:
+# 	me = get_watcher().get_summoner(name=name)
+# 	users = get_watcher().get_league([me['id']], region='na')[str(me['id'])][0]['entries']
+# 	for user in users:
+# 		player = Player.objects.get(username=user['playerOrTeamName'], userid=int(user['playerOrTeamId']))
+# 		if user['division'] == "I":
+# 			player.division = 1
+# 		elif user['division'] == "II":
+# 			player.division = 2
+# 		elif user['division'] == "III":
+# 			player.division = 3
+# 		elif user['division'] == "IV":
+# 			player.division = 4
+# 		elif user['division'] == "V":
+# 			player.division = 5
+# 		player.save()
 		
 	# user_ids = [int(user['playerOrTeamId']) for user in users]
 	# target.append(user_ids)
@@ -43,9 +43,10 @@ for name in names:
 
 # print "for league of legand"
 
-# data = [[1,2,3,4], [2,3,4,5], [1,2,3,4], [8,8,8,9], [10,10,10,2]]
-# algo = Kmean(data, 2)
-# mu, clusters_points = algo.get_clusters()
+data = [[1.1,2.2,3.3,4.4], [2.2,3.3,4.4,5.5], [1.1,2.2,3.3,4.4], [8.8,8.8,8.8,9.9], [10.1,10.1,10.1,2.2]]
+#data = [[4.5, 1.6, 0.5, 1.7], [4.8, 1.7, 0.4, 3.6], [10,10,10,10]]
+algo = Kmean(data, 2)
+mu, clusters_points = algo.get_clusters()
 
-# print mu
-# print clusters_points
+print mu
+print clusters_points

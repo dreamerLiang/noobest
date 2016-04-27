@@ -7,7 +7,7 @@ from django.db import models
 class Player(models.Model):
     username = models.CharField('username', max_length=255, blank=True, null=True)
     userid = models.IntegerField(blank=True, null=True)
-    vector = JSONField(blank=True, null=True)
-    recent_match = JSONField(blank=True, null=True)
+    vector = models.CharField(max_length=255, blank=True, null=True)
+    recent_match = models.CharField(max_length=2000, blank=True, null=True)
     rank = models.IntegerField('rank', blank=True, null=True, choices=RANK_DEFAULT_CHOICES)
     division = models.IntegerField(blank=True, null=True)

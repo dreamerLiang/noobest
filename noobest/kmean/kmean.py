@@ -27,6 +27,7 @@ class Kmean:
 			data_len = len(self.dataset[0])
 		dataset = [[random.uniform(begin, end)] * data_len for i in range(numbers)]
 		dataset = [[float("{0:.2f}".format(data)) for data in point] for point in dataset]
+		return dataset
 
 	""" Get distance between two point """
 	@classmethod
@@ -50,7 +51,8 @@ class Kmean:
 	def move_centroids(self, clusters_points):
 		mu = []
 		for points in clusters_points:
-			mu.append(numpy.mean(points, axis=0))
+			mean = numpy.nanmean(numpy.array(points), axis=0)
+			mu.append(mean)
 		return mu
 
 	""" Check if two group of centroids has changed """
@@ -73,14 +75,12 @@ class Kmean:
 	@classmethod
 	def get_clusters(self):
 		if self.dataset == None:
-			self.dataset = self.get_random_points(100, )
+			self.dataset = self.get_random_points(100)
 		if self.centroid == None:
 			self.centroid = self.get_centroid_numbers()
 		# Choose random points as cluster centroid
-		mu = self.get_random_points(self.centroid)
-		print mu
-		last_mu = self.get_random_points(self.centroid)
-		print last_mu
+		mu = [self.dataset[i] for i in range(self.centroid)]
+		last_mu = [self.dataset[i * 2] for i in range(self.centroid)]
 		# Avoid the situation that first pick of two sets are converged.
 		first_loop = True
 		while first_loop or not self.converged(last_mu, mu):
