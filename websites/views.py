@@ -16,20 +16,24 @@ def about(request):
     return render(request, "about.html", locals())
 
 def result(request, username):
+    username = username.replace("-", "%20")
+    print username
     player = Player.objects.get(username=username)
+    print player
     friends_id = json.loads(player.friends.replace("'", '"'))['ids']
     players = Player.objects.filter(userid__in=friends_id).order_by('evaluation', 'total_score')
     print [player.username + " rank: " + str(player.evaluation) + " total score: " + str(player.total_score) for player in players]
-    noobest = players[0].username
-    players_1 = players[0]
-    cs = players_1.get_user_vector_cs()
-    print player.vector
-    players_2 = players[1]
-    players_3 = players[2]
+    if len(players) > 0:
+        noobest = players[0].username
+        players_1 = players[0]
+        cs = players_1.get_user_vector_cs()
+    if len(players) > 1:
+        players_2 = players[1]
+    if len(players) > 2:
+        players_3 = players[2]
     return render(request, "result.html", locals())
 
 def transition(request, username):
-    username = username
     return render(request, "transition.html", locals())
 
 def testing(request):
@@ -55,6 +59,7 @@ def search(request):
         except:
             error_code = ErrorList.USER_NOT_FOUND
             return render(request, "search.html", locals())
+
         match = get_watcher().get_match_list(me['id'],'na')
         match_id_list = [i['matchId'] for i in match['matches'] if i['queue'] == 'TEAM_BUILDER_DRAFT_RANKED_5x5'][:9]
         match_details = []
