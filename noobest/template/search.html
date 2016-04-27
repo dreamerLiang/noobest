@@ -96,9 +96,10 @@
               console.log(data);
             },
             success: function(data) {
-              window.location.replace("/transition/");
+              
             }
           });
+          window.location.replace("/transition/" + $('#name').val());
         });
     </script>
   </body>

@@ -3,7 +3,7 @@ from rank.models import Player
 
 
 class PlayerAdmin(admin.ModelAdmin):
-	list_display = ('id', 'username', 'userid', 'division', 'vector', 'rank', 'recent_match')
+	list_display = ('id', 'username', 'userid', 'division', 'vector', 'rank')
 
 
 admin.site.register(Player, PlayerAdmin)

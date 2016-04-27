@@ -1,8 +1,8 @@
 from utils.api import get_watcher
-from rank.views import rank
 from django.shortcuts import render, HttpResponseRedirect
 from utils.constants import ErrorList
-from rank.views import get_vector, get_score
+from rank.models import Player
+from rank.views import get_vector, get_score, get_data, get_rank
 
 import operator
 
@@ -11,9 +11,15 @@ def index(request):
 def about(request):
     return render(request, "about.html", locals())
 
-def result(request):
+def result(request, username):
+    print username
+    player = Player.objects.get(username=username)
+    #friends_id = player.friends_id
+    #players = Player.objects.filter(userid__in=friends_id)
     return render(request, "result.html", locals())
-def transition(request):
+
+def transition(request, username):
+    username = username
     return render(request, "transition.html", locals())
 
 def testing(request):
@@ -57,17 +63,22 @@ def search(request):
         friends_id = [key for key, value in all_players_id.items() if len(value) > 1]
 
 
-        scores = []
         for fid in friends_id:
             if fid == me['id']:
                 continue
 
-            data = get_vector(fid, all_players_id)
-            score = get_score(data)
-            scores.append(score)
-            sorted(scores)
-            print ("final scores")
-            print(scores)
+            player, _ = Player.objects.get_or_create(userid=fid)
+            data = get_data(fid, all_players_id)
+            player.vector = data
+            vector = get_vector(data)
+            index, rank = get_rank(vector)
+            score = get_score(vector, index)
+            player.evaluation = rank[0]
+            player.scores = score
+            player.save()
+
+        players = Player.objects.filter(userid__in=friends_id)
+        print players
 
         return render(request, "result.html", locals())
     return render(request, "search.html", locals())

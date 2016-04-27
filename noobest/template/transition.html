@@ -77,7 +77,7 @@
     <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
     <script> 
       $( "#go-to-result" ).click(function() {
-        window.location.replace("/result/"); // + {{id}});
+        window.location.replace("/result/" + "{{ username }}");
       });
 
       $("#go-to-result").hide();

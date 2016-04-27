@@ -68,7 +68,7 @@ def search(my_id):
             return data
 
 count = 0
-players = Player.objects.all()
+players = Player.objects.filter(vector__isnull=False)
 players = [player for player in players if json.loads(player.vector.replace("'", '"'))['wards_placed_per_minute'] < 1]
 for player in players:
     try:
