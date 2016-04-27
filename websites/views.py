@@ -48,7 +48,7 @@ def search(request):
         if not 'name' in request.POST:
             return render(request, "search.html", locals())
 
-        name = request.POST.get('name')
+        name = request.POST.get('name').replace(" ", "%20")
 
         try:
             me = get_watcher().get_summoner(name=name)
