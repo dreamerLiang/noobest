@@ -99,6 +99,11 @@
 
         <canvas id="myChart" class="myChart"></canvas>
       </div>
+          <div id="tire-graph">
+            <p class="cover-heading"> Your noobest teammate's ranking: </p>
+            <img id="ranking-badge" style="display:none;" src="http://www.adkgamers.com/uploads/monthly_07_2015/post-12900-0-12757500-1438055330.png" >
+            <text id="get-ranking-badge" style="display:none;" > {{players_1.evaluation}} </text>
+          </div>
           <div id="chartContainer" style="height: 300px; width: 100%;">
           </div>
           <div style="display:none;">
@@ -107,6 +112,7 @@
             <text id="kda"> {{player.get_user_vector_kda}}</text>
             <text id="dmg"> {{player.get_user_vector_dmg}}</text>
           </div>
+
           <!--div id="loading"> 
             <div id="loading-bar"> </div>
           </div-->
@@ -126,6 +132,33 @@
     <script src="{% static "js/Chart.js" %}"></script>
     <script>
       $(document).ready(function() {
+
+        $('#ranking-badge').hide();
+        var ranking_badge = ($('#get-ranking-badge')).text();
+        console.log(ranking_badge);
+        src = "";
+        if(ranking_badge == 0) {
+          src = "http://vignette4.wikia.nocookie.net/leagueoflegends/images/b/b4/BronzeBadgeSeason2.png/revision/latest?cb=20130928162132";
+        } else if (ranking_badge == 1) {
+          src = "http://vignette2.wikia.nocookie.net/leagueoflegends/images/3/3f/SilverBadgeSeason2.png/revision/latest?cb=20130928162033";
+        } else if (ranking_badge == 2) {
+          src = "http://vignette1.wikia.nocookie.net/leagueoflegends/images/7/77/GoldBadgeSeason2.png/revision/latest?cb=20130928162204";
+        } else if (ranking_badge == 3) {
+          src = "http://vignette2.wikia.nocookie.net/leagueoflegends/images/5/5f/PlatinumBadgeSeason2.png/revision/latest?cb=20130928162240";
+        } else if (ranking_badge == 4) {
+          src = "http://vignette2.wikia.nocookie.net/leagueoflegends/images/0/03/DiamondBadge.png/revision/latest?cb=20130928162320";
+        } else if (ranking-badge == 5) {
+          src = "http://vignette4.wikia.nocookie.net/leagueoflegends/images/d/d2/MasterBadge.png/revision/latest?cb=20150418014845";
+        } else  {
+          src = "http://vignette4.wikia.nocookie.net/leagueoflegends/images/3/36/ChallengerBadge.png/revision/latest?cb=20150418014914";
+        }
+
+        $('#ranking-badge').attr('src', src);
+        $('#ranking-badge').show();
+
+
+
+
       // Create our graph from the data table and specify a container to put the graph in
         //createGraph('#friend-ranking-table-table', '.friend-ranking-chart');
         createGraph('#data-table', '.chart');
@@ -322,7 +355,7 @@
           playerData[1] = ($('#wd').text()) / 1000;
           playerData[2] = ($('#kda').text()) / 1000;
           playerData[3] = ($('#dmg').text()) / 1000;
-          console.log(playerData);
+          //console.log(playerData);
       var data = {
           labels: ["cs_per_minute", "wards_placed_per_minute", "kda", "damage_per_gold"],
           datasets: [
