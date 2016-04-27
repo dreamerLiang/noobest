@@ -1,21 +1,24 @@
 from utils.api import get_watcher
 from django.shortcuts import render, HttpResponseRedirect
-from utils.constants import ErrorList
+from utils.constants import ErrorList, division
 from rank.models import Player
+from rank.constants import RANK_INT
 from rank.views import get_vector, get_score, get_data, get_rank
 
 import operator
+import json
+
 
 def index(request):
     return render(request, "index.html", locals())
+
 def about(request):
     return render(request, "about.html", locals())
 
 def result(request, username):
-    print username
     player = Player.objects.get(username=username)
-    #friends_id = player.friends_id
-    #players = Player.objects.filter(userid__in=friends_id)
+    friends_id = json.loads(player.friends.replace("'", '"'))['ids']
+    players = Player.objects.filter(userid__in=friends_id).order_by('-total_score')
     return render(request, "result.html", locals())
 
 def transition(request, username):
@@ -26,7 +29,6 @@ def testing(request):
     return render(request, "testing.html", locals())
 
 def summoner(request):
-    print "returning result"
     if request.is_ajax():
         #deal with the user input here.
         # rank(user)
@@ -60,14 +62,20 @@ def search(request):
                 else:
                     all_players_id[data['player']['summonerId']] = [[match_detail, data['participantId']]]
 
+        player, _ = Player.objects.get_or_create(username=name, userid=me['id'])
         friends_id = [key for key, value in all_players_id.items() if len(value) > 1]
-
+        friends_id.remove(int(me['id']))
+        player.friends = json.dumps({'ids': friends_id})
+        player.save()
 
         for fid in friends_id:
-            if fid == me['id']:
-                continue
+            player_detail = get_watcher().get_league_entry(summoner_ids=[fid])
 
             player, _ = Player.objects.get_or_create(userid=fid)
+
+            player.username = player_detail[str(fid)][0]['entries'][0]['playerOrTeamName']
+            player.rank = RANK_INT[player_detail[str(fid)][0]['tier']]
+            player.division = division[player_detail[str(fid)][0]['entries'][0]['division']]
             data = get_data(fid, all_players_id)
             player.vector = data
             vector = get_vector(data)
@@ -75,19 +83,10 @@ def search(request):
             score = get_score(vector, index)
             player.evaluation = rank[0]
             player.scores = score
+            player.total_score = score['total']
             player.save()
-
-        players = Player.objects.filter(userid__in=friends_id)
-        print players
 
         return render(request, "result.html", locals())
     return render(request, "search.html", locals())
-        
-
-
-
-                
-
-
 
  

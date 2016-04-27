@@ -54,7 +54,6 @@ def get_data(fid, all_players_id):
         specific_match = data[0]
         position = data[1]
         match_time = specific_match['matchDuration']
-        print match_time
         for participants in specific_match['participants'][position - 1]['stats']:
             if str(participants) == 'goldEarned':
                 goldEarned = specific_match['participants'][position - 1]['stats'][participants] 

@@ -9,6 +9,8 @@ class Player(models.Model):
     userid = models.IntegerField(blank=True, null=True)
     vector = models.CharField(max_length=255, blank=True, null=True)
     scores = models.CharField(max_length=255, blank=True, null=True)
+    friends = models.CharField(max_length=255, blank=True, null=True)
+    total_score = models.IntegerField(blank=True, null=True)
     rank = models.IntegerField('rank', blank=True, null=True, choices=RANK_DEFAULT_CHOICES)
     division = models.IntegerField(blank=True, null=True)
     evaluation = models.IntegerField(blank=True, null=True, choices=RANK_DEFAULT_CHOICES)

@@ -17,3 +17,13 @@ RANK_DEFAULT_CHOICES = (
     (RANK.MASTER, "Master"),
     (RANK.CHALLENGER, "Challenger"),
 )
+
+RANK_INT = {
+    "BRONZE"    : 0,
+    "SILVER"    : 1,
+    "GOLD"      : 2,
+    "PLATINUM"  : 3,
+    "DIAMOND"   : 4,
+    "MASTER"    : 5,
+    "CHALLENGER": 6,
+}
