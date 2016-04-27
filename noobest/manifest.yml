@@ -1,0 +1,13 @@
+applications:
+- name: noobest 
+  memory: 256M
+# This is command provided by cf -c option  
+  command: bash ./run.sh
+  buildpack: python_buildpack
+  path: .
+declared-services:
+  psql_db:
+    label: postgresql
+    plan: 100
+services:
+  - psql_db
